@@ -1,4 +1,6 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { DecimalPipe } from '@angular/common';
 
 @Directive({
   selector: '[appPercent]',
@@ -34,10 +36,9 @@ export class PercentDirective {
       uiValue = "100.00";
     } else if(!isNaN(parsedValue)){
       console.log('here directive2');
- 
+
       // this.model.valueAccessor.writeValue(parsedValue);
       uiValue = this.decimalPipe.transform(parsedValue,'1.'+ this.decimals + '-' + this.decimals);
-      this.model.control.value
     }
 
     this.el.nativeElement.value = uiValue + '%';
